@@ -10,8 +10,11 @@
     <ApplicationId>com.dotnet.mono.profiler.hellomaui</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)../packages</RestorePackagesPath>
+    <RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory)../../bin/$(Configuration)/</RestoreAdditionalProjectSources >
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="DotNet.Mono.Profiler.Android" Version="$(PackageVersion)" />
     <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiImage Include="Resources\Images\*" />

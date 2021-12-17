@@ -14,4 +14,7 @@
     <None Include="../../LICENSE" Pack="true" PackagePath="/" />
     <None Update="@(None)" Pack="true" PackagePath="/" />
   </ItemGroup>
+  <Target Name="_ClearNuGetCache" BeforeTargets="Build">
+    <RemoveDir Directories="$(MSBuildThisFileDirectory)../../samples/packages/$(PackageId.ToLowerInvariant())" />
+  </Target>
 </Project>
