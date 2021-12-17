@@ -1,0 +1,20 @@
+<Project>
+  <Target Name="_EnableMonoProfiling">
+    <ItemGroup>
+      <AndroidEnvironment Include="$(MSBuildThisFileDirectory)AndroidEnvironment.txt" />
+      <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm\libmono-profiler-log.so" />
+      <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm64\libmono-profiler-log.so" />
+      <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-x86\libmono-profiler-log.so" />
+      <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-x64\libmono-profiler-log.so" />
+    </ItemGroup>
+    <Exec Command="adb shell rm /sdcard/Download/profile.mlpd" />
+  </Target>
+  <Target Name="StartProfiling" DependsOnTargets="_EnableMonoProfiling;Run">
+    <Message Text="Application is running. Run the StopProfiling target to collect the log." Importance="High" />
+  </Target>
+  <Target Name="StopProfiling">
+    <Exec Command="adb shell am force-stop $(ApplicationId)" />
+    <Exec Command="adb pull /sdcard/Download/profile.mlpd" />
+    <Message Text="Application stopped. See 'profile.mlpd' in the current directory." Importance="High" />
+  </Target>
+</Project>
