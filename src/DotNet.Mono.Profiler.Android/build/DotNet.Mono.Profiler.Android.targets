@@ -1,22 +1,37 @@
 <Project>
-  <Target Name="_EnableMonoProfiling">
+  <PropertyGroup>
+    <AndroidMonoProfilerEnvironmentFile Condition=" '$(AndroidMonoProfilerEnvironmentFile)' == '' ">$(IntermediateOutputPath)DotNet.Mono.Profiler.Android.env</AndroidMonoProfilerEnvironmentFile>
+    <AndroidMonoProfilers Condition=" '$(AndroidMonoProfilers)' == '' ">calls,alloc,nocounters</AndroidMonoProfilers>
+    <AndroidMonoProfilerOutput Condition=" '$(AndroidMonoProfilerOutput)' == '' ">/sdcard/Download/profile.mlpd</AndroidMonoProfilerOutput>
+  </PropertyGroup>
 
-  </Target>
-  <Target Name="StartProfiling">
+  <!--NOTE: don't want anything in here to be incremental, we need targets to rerun -->
+  <Target Name="_SetupMonoProfiler">
+    <WriteLinesToFile
+        File="$(AndroidMonoProfilerEnvironmentFile)"
+        Lines="MONO_PROFILE=log:$(AndroidMonoProfilers),output=$(AndroidMonoProfilerOutput)"
+    />
     <ItemGroup>
-      <AndroidEnvironment Include="$(MSBuildThisFileDirectory)AndroidEnvironment.txt" />
+      <FileWrites Include="$(AndroidMonoProfilerEnvironmentFile)" />
+      <AndroidEnvironment Include="$(AndroidMonoProfilerEnvironmentFile)" />
       <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm\libmono-profiler-log.so" />
       <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm64\libmono-profiler-log.so" />
       <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-x86\libmono-profiler-log.so" />
       <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-x64\libmono-profiler-log.so" />
     </ItemGroup>
-    <CallTarget Targets="Clean;Run" />
-    <Message Text="Application is running. Run the StopProfiling target to collect the log." Importance="High" />
   </Target>
+
+  <Target Name="_DeleteMonoProfile" DependsOnTargets="_ResolveSdks" AfterTargets="StopProfiling">
+    <Exec Command="adb shell 'if [ -f &quot;$(AndroidMonoProfilerOutput)&quot; ]; then rm &quot;$(AndroidMonoProfilerOutput)&quot;; fi'" WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
+  </Target>
+
+  <Target Name="StartProfiling" DependsOnTargets="_SetupMonoProfiler;_DeleteMonoProfile;Run;">
+    <Message Text="Application is running. Run 'dotnet build $(MSBuildProjectFile) -t:StopProfiling' to collect the log." Importance="High" />
+  </Target>
+
   <Target Name="StopProfiling" DependsOnTargets="_ResolveSdks">
-    <Exec Command="adb shell am force-stop $(ApplicationId)"   WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"  />
-    <Exec Command="adb pull /sdcard/Download/profile.mlpd"     WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"  />
-    <Exec Command="adb shell rm /sdcard/Download/profile.mlpd" WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"  />
+    <Exec Command="adb shell am force-stop $(ApplicationId)" WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
+    <Exec Command="adb pull $(AndroidMonoProfilerOutput)"    WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
     <Message Text="Application stopped. See 'profile.mlpd' in the current directory." Importance="High" />
   </Target>
 </Project>

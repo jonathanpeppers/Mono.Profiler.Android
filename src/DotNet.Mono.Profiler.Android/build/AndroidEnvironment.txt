@@ -1,1 +1,0 @@
-MONO_PROFILE=log:calls,alloc,nocounters,output=/sdcard/Download/profile.mlpd
