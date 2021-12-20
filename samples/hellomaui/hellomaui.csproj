@@ -7,14 +7,14 @@
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationTitle>hellomaui</ApplicationTitle>
-    <ApplicationId>com.dotnet.mono.profiler.hellomaui</ApplicationId>
+    <ApplicationId>com.mono.profiler.hellomaui</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <RestorePackagesPath>$(MSBuildThisFileDirectory)../packages</RestorePackagesPath>
     <RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory)../../bin/$(Configuration)/</RestoreAdditionalProjectSources >
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DotNet.Mono.Profiler.Android" Version="$(PackageVersion)" />
+    <PackageReference Include="Mono.Profiler.Android" Version="$(PackageVersion)" />
     <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiImage Include="Resources\Images\*" />

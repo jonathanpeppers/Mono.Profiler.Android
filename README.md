@@ -1,4 +1,4 @@
-# DotNet.Mono.Profiler.Android
+# Mono.Profiler.Android
 
 Support for the Mono profiler in .NET 6 Android applications
 
@@ -6,7 +6,7 @@ Support for the Mono profiler in .NET 6 Android applications
 
 ```dotnetcli
 > dotnet new android
-> dotnet add package DotNet.Mono.Profiler.Android
+> dotnet add package Mono.Profiler.Android
 > dotnet build -c Release -t:StartProfiling
 # Wait until app launches, or you navigate to a screen
 > dotnet build -c Release -t:StopProfiling
@@ -30,7 +30,7 @@ See [Profiling Managed Code][profiling] for more info.
 
 * `$(AndroidMonoProfilerEnvironmentFile)`: location of the generated
   `@(AndroidEnvironment)` file. Defaults to
-  `$(IntermediateOutputPath)DotNet.Mono.Profiler.Android.env`.
+  `$(IntermediateOutputPath)Mono.Profiler.Android.env`.
 
 ## To Build & Test this Repository
 

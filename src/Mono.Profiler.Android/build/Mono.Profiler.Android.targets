@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <AndroidMonoProfilerEnvironmentFile Condition=" '$(AndroidMonoProfilerEnvironmentFile)' == '' ">$(IntermediateOutputPath)DotNet.Mono.Profiler.Android.env</AndroidMonoProfilerEnvironmentFile>
+    <AndroidMonoProfilerEnvironmentFile Condition=" '$(AndroidMonoProfilerEnvironmentFile)' == '' ">$(IntermediateOutputPath)Mono.Profiler.Android.env</AndroidMonoProfilerEnvironmentFile>
     <AndroidMonoProfilers Condition=" '$(AndroidMonoProfilers)' == '' ">calls,alloc,nocounters</AndroidMonoProfilers>
     <AndroidMonoProfilerOutput Condition=" '$(AndroidMonoProfilerOutput)' == '' ">/sdcard/Download/profile.mlpd</AndroidMonoProfilerOutput>
   </PropertyGroup>
