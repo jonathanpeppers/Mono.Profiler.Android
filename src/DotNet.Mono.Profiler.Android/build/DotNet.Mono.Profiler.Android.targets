@@ -8,9 +8,13 @@
   <!--NOTE: don't want anything in here to be incremental, we need targets to rerun -->
   <Target Name="_SetupMonoProfiler">
     <WriteLinesToFile
+        Overwrite="true"
         File="$(AndroidMonoProfilerEnvironmentFile)"
         Lines="MONO_PROFILE=log:$(AndroidMonoProfilers),output=$(AndroidMonoProfilerOutput)"
     />
+    <PropertyGroup>
+      <AndroidNeedsInternetPermission>true</AndroidNeedsInternetPermission>
+    </PropertyGroup>
     <ItemGroup>
       <FileWrites Include="$(AndroidMonoProfilerEnvironmentFile)" />
       <AndroidEnvironment Include="$(AndroidMonoProfilerEnvironmentFile)" />
@@ -22,7 +26,12 @@
   </Target>
 
   <Target Name="_DeleteMonoProfile" DependsOnTargets="_ResolveSdks" AfterTargets="StopProfiling">
-    <Exec Command="adb shell 'if [ -f &quot;$(AndroidMonoProfilerOutput)&quot; ]; then rm &quot;$(AndroidMonoProfilerOutput)&quot;; fi'" WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
+    <Exec
+        IgnoreExitCode="true"
+        IgnoreStandardErrorWarningFormat="true"
+        Command="adb shell rm &quot;$(AndroidMonoProfilerOutput)&quot;"
+        WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"
+    />
   </Target>
 
   <Target Name="StartProfiling" DependsOnTargets="_SetupMonoProfiler;_DeleteMonoProfile;Run;">
@@ -30,8 +39,14 @@
   </Target>
 
   <Target Name="StopProfiling" DependsOnTargets="_ResolveSdks">
-    <Exec Command="adb shell am force-stop $(ApplicationId)" WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
-    <Exec Command="adb pull $(AndroidMonoProfilerOutput)"    WorkingDirectory="$(AndroidSdkDirectory)/platform-tools" />
+    <Exec
+        Command="adb shell am force-stop $(ApplicationId)"
+        WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"
+    />
+    <Exec
+        Command="adb pull $(AndroidMonoProfilerOutput) &quot;$(MSBuildProjectDirectory)/profile.mlpd&quot;"
+        WorkingDirectory="$(AndroidSdkDirectory)/platform-tools"
+    />
     <Message Text="Application stopped. See 'profile.mlpd' in the current directory." Importance="High" />
   </Target>
 </Project>
