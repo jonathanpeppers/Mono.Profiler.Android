@@ -6,7 +6,7 @@ Support for the Mono profiler in .NET 6 Android applications
 
 ```dotnetcli
 > dotnet new android
-> dotnet add package Mono.Profiler.Android
+> dotnet add package Mono.Profiler.Android --prerelease
 > dotnet build -c Release -t:StartProfiling
 # Wait until app launches, or you navigate to a screen
 > dotnet build -c Release -t:StopProfiling
