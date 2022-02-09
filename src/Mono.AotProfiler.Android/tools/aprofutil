@@ -1,0 +1,5 @@
+#!/bin/sh
+BINDIR=`dirname "$0"`
+
+unset MONO_PATH
+exec mono $MONO_OPTIONS "$BINDIR/aprofutil.exe" "$@"
