@@ -35,7 +35,7 @@ This will produce a `custom.aprof` in your project directory.
 To use `custom.aprof` going forward, you can do:
 
 ```xml
-<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+<PropertyGroup>
   <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
 </PropertyGroup>
 <ItemGroup>
@@ -44,8 +44,8 @@ To use `custom.aprof` going forward, you can do:
 ```
 
 `-p:RunAOTCompilation=true` and `-p:AndroidEnableProfiledAot=true` are
-required to enable Profiled AOT. This should be enabled by default by
-the Android workload.
+required to enable Profiled AOT. This should be enabled by default
+for `Release` builds.
 
 ## MSBuild Properties
 
