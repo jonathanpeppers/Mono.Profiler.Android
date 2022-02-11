@@ -37,6 +37,8 @@ To use `custom.aprof` going forward, you can do:
 ```xml
 <PropertyGroup>
   <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
+  <!-- Or if it is a .NET MAUI project -->
+  <MauiUseDefaultAotProfile>false</MauiUseDefaultAotProfile>
 </PropertyGroup>
 <ItemGroup>
   <AndroidAotProfile Include="custom.aprof" />
