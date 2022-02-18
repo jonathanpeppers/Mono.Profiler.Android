@@ -15,6 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Mono.Profiler.Android" Version="$(PackageVersion)" />
+    <PackageReference Include="Mono.AotProfiler.Android" Version="$(PackageVersion)" />
     <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" />
     <MauiImage Include="Resources\Images\*" />
