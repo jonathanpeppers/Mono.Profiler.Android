@@ -14,6 +14,7 @@
     <None Include="../../bin/$(Configuration)/aotprofile-tool.dll" Pack="true" PackagePath="tools" />
     <None Include="../../bin/$(Configuration)/aotprofile-tool.pdb" Pack="true" PackagePath="tools" />
     <None Include="../../bin/$(Configuration)/aotprofile-tool.runtimeconfig.json" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/Mono.Options.dll" Pack="true" PackagePath="tools" />
     <ProjectReference Include="../aotprofile-tool/aotprofile-tool.csproj" />
   </ItemGroup>
   <Target Name="_ClearNuGetCache" BeforeTargets="Build">
