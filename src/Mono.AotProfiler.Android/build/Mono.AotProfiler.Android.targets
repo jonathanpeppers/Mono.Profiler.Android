@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AProfUtilToolPath>$(MonoAotProfilerAndroidToolsPath)</AProfUtilToolPath>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Configuration)' == 'Debug' or '$(AndroidEnableAotProfiler)' == 'true' ">
+  <ItemGroup Condition=" '$(AndroidEnableAotProfiler)' == 'true' or '$(RunAOTCompilation)' != 'true' ">
     <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm\libmono-profiler-aot.so" />
     <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm64\libmono-profiler-aot.so" />
     <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-x86\libmono-profiler-aot.so" />
