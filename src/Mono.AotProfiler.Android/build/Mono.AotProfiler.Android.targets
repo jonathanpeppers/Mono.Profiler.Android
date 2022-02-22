@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <AProfUtilToolPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\tools\'))</AProfUtilToolPath>
+    <AProfUtilToolPath>$(MonoAotProfilerAndroidToolsPath)</AProfUtilToolPath>
   </PropertyGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' or '$(AndroidEnableAotProfiler)' == 'true' ">
     <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)android-arm\libmono-profiler-aot.so" />

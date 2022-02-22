@@ -11,6 +11,9 @@ variables:
 
 steps:
 
+- checkout: self
+  submodules: true
+
 - script: dotnet build -bl:$(Build.ArtifactStagingDirectory)/logs/build.binlog
   displayName: dotnet build
 

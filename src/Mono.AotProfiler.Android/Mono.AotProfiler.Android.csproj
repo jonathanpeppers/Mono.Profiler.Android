@@ -2,8 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <OutputPath>../../bin/$(Configuration)/</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>NU5128</NoWarn>
     <Description>Support for recording custom AOT profiles in .NET 6 Android applications</Description>
     <PackageProjectUrl>https://github.com/jonathanpeppers/Mono.Profiler.Android</PackageProjectUrl>
@@ -13,6 +11,11 @@
   <ItemGroup>
     <None Include="../../LICENSE" Pack="true" PackagePath="/" />
     <None Update="@(None)" Pack="true" PackagePath="/" />
+    <None Include="../../bin/$(Configuration)/aotprofile-tool.dll" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/aotprofile-tool.pdb" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/aotprofile-tool.runtimeconfig.json" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/Mono.Options.dll" Pack="true" PackagePath="tools" />
+    <ProjectReference Include="../aotprofile-tool/aotprofile-tool.csproj" />
   </ItemGroup>
   <Target Name="_ClearNuGetCache" BeforeTargets="Build">
     <RemoveDir Directories="$(MSBuildThisFileDirectory)../../samples/packages/$(PackageId.ToLowerInvariant())" />

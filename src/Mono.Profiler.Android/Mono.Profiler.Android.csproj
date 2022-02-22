@@ -2,8 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <OutputPath>../../bin/$(Configuration)/</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <NoWarn>NU5128</NoWarn>
     <Description>Support for the Mono profiler in .NET 6 Android applications</Description>
     <PackageProjectUrl>https://github.com/jonathanpeppers/Mono.Profiler.Android</PackageProjectUrl>

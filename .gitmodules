@@ -1,0 +1,3 @@
+[submodule "external/aotprofile-tool"]
+	path = external/aotprofile-tool
+	url = https://github.com/radekdoulik/aotprofile-tool.git
