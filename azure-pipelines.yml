@@ -1,0 +1,28 @@
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  Configuration: Release
+
+steps:
+
+- script: dotnet build -bl:$(Build.ArtifactStagingDirectory)/logs/build.binlog
+  displayName: dotnet build
+
+- task: CopyFiles@2
+  displayName: copy apks
+  inputs:
+    contents: bin/$(Configuration)/*.nupkg
+    flattenFolders: true
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  displayName: upload artifacts
+  inputs:
+    artifactName: artifacts
+  condition: succeededOrFailed()
