@@ -11,7 +11,8 @@
   <ItemGroup>
     <None Include="../../LICENSE" Pack="true" PackagePath="/" />
     <None Update="@(None)" Pack="true" PackagePath="/" />
-    <None Include="../../bin/$(Configuration)/aotprofile-tool.exe" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/aotprofile-tool.dll" Pack="true" PackagePath="tools" />
+    <None Include="../../bin/$(Configuration)/aotprofile-tool.pdb" Pack="true" PackagePath="tools" />
     <None Include="../../bin/$(Configuration)/aotprofile-tool.runtimeconfig.json" Pack="true" PackagePath="tools" />
     <ProjectReference Include="../aotprofile-tool/aotprofile-tool.csproj" />
   </ItemGroup>
