@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <PackageVersion>6.0.0-preview1</PackageVersion>
+    <PackageVersion>6.0.0-preview2</PackageVersion>
     <OutputPath>$(MSBuildThisFileDirectory)bin/$(Configuration)/</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
