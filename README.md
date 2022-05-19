@@ -6,7 +6,7 @@ Support for the Mono profiler in .NET 6 Android applications
 
 ```dotnetcli
 > dotnet new android
-> dotnet add package Mono.Profiler.Android --prerelease
+> dotnet add package Mono.Profiler.Android
 > dotnet build -c Release -t:StartProfiling
 # Wait until app launches, or you navigate to a screen
 > dotnet build -c Release -t:StopProfiling
@@ -24,7 +24,7 @@ See [Profiling Managed Code][profiling] for more info.
 Use a Debug build, or set `-p:AndroidEnableAotProfiler=true`:
 
 ```dotnetcli
-> dotnet add package Mono.AotProfiler.Android --prerelease
+> dotnet add package Mono.AotProfiler.Android
 > dotnet build -t:BuildAndStartAotProfiling
 # Wait until app launches, or you navigate to a screen
 > dotnet build -t:FinishAotProfiling
