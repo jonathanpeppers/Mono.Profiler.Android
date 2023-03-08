@@ -1,0 +1,7 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <PropertyGroup>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)packages</RestorePackagesPath>
+    <RestoreAdditionalProjectSources>$(MSBuildThisFileDirectory)../bin/$(Configuration)/</RestoreAdditionalProjectSources >
+  </PropertyGroup>
+</Project>
