@@ -1,23 +1,6 @@
-# Mono.Profiler.Android
+# Mono.AotProfiler.Android
 
-Support for the Mono profiler in .NET 6 Android applications
-
-## Usage of the Mono Profiler
-
-```dotnetcli
-> dotnet new android
-> dotnet add package Mono.Profiler.Android
-> dotnet build -c Release -t:StartProfiling
-# Wait until app launches, or you navigate to a screen
-> dotnet build -c Release -t:StopProfiling
-```
-_NOTE: you can also use `dotnet new maui`, build with `-f net6.0-android`._
-
-This should produce `profile.mlpd` in the project's directory.
-
-See [Profiling Managed Code][profiling] for more info.
-
-[profiling]: https://github.com/xamarin/xamarin-android/blob/98d61e54736fda9e79fda62d49d20d9e7bc26ce7/Documentation/guides/profiling.md#profiling-managed-code
+Support for the Mono AOT profiler in .NET 6+ Android applications
 
 ## Usage of the AOT Profiler
 
